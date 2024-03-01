@@ -1,3 +1,5 @@
+import { Input } from '../../styled-components/SearchInputStyles';
+
 function SearchInput({
   value,
   onChange,
@@ -6,7 +8,8 @@ function SearchInput({
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }) {
   return (
-    <input
+    <Input
+      id='search'
       type='text'
       value={value}
       onChange={onChange}

@@ -7,7 +7,7 @@ body {
   font-family: 'Lato', sans-serif;
 }
 
-nav {
+/* nav {
   display: flex;
   flex-direction: column;
   background: rgb(154, 208, 194);
@@ -15,36 +15,36 @@ nav {
   border-radius: 15px;
   font-weight: 700;
   font-size: larger;
-}
+} */
 
-ul {
+/* ul {
   margin: 0;
   padding: 0;
-}
+} */
 
-nav ul {
+/* nav ul {
   display: flex;
   place-content: center;
   gap: 3rem;
   margin: 0;
   padding: 1rem;
-}
+} */
 
-li {
+/* li {
   list-style: none;
   margin: 0;
   padding: 0;
-}
+} */
 
-nav li *:hover {
+/* nav li *:hover {
   text-shadow: 3px 3px 2px rgba(45, 149, 150, 1);
 }
 
 li * {
   text-decoration: none;
   color: rgb(38, 80, 115);
-}
-
+} */
+/* 
 main {
   display: flex;
   flex-direction: column;
@@ -75,9 +75,9 @@ main .photos {
   main .photos {
     grid-template-columns: repeat(2, 1fr);
   }
-}
+} */
 
-input {
+/* input {
   background-color: rgb(241, 250, 218);
   color: rgb(38, 80, 115);
   border: none;
@@ -97,23 +97,23 @@ input:focus {
 ::placeholder {
   color: rgb(45, 149, 150);
   opacity: 0.5;
-}
+} */
 
-.photos img {
+/* .photos img {
   width: clamp(10rem, 15vw, 20rem);
   height: clamp(10rem, 15vw, 20rem);
   object-fit: cover;
-}
+} */
 
-.searched-items {
+/* .searched-items {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: 2rem;
-}
+} */
 
-.modal-overlay {
+/* .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -147,4 +147,4 @@ input:focus {
   bottom: 5px;
   cursor: pointer;
   font-size: larger;
-}
+} */

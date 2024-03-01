@@ -9,6 +9,8 @@ import LoadingIndicator from '../components/LoadingIndicator';
 import useDataFetching from '../hooks/useDataFetching';
 import useScrollHandler from '../hooks/useScrollHandler';
 
+import { Main } from '../styled-components/MainStyles';
+
 function HomePage() {
   const [query, setQuery] = useState<string>('');
   const [selectedPhoto, setSelectedPhoto] = useState<Photos | null>(null);
@@ -34,13 +36,13 @@ function HomePage() {
   };
 
   return (
-    <main className='App'>
+    <Main>
       <h1>Photos</h1>
       <SearchInput value={query} onChange={handleSearchChange} />
       <Modal photo={selectedPhoto} onClose={handleCloseModal} />
       <PhotoList photos={data} onPhotoClick={handlePhotoClick} />
       {loading && <LoadingIndicator />}
-    </main>
+    </Main>
   );
 }
 

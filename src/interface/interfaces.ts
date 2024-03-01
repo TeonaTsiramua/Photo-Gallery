@@ -15,4 +15,5 @@ export interface Photos {
     name: string;
   };
   likes: number;
+  alt_description: string | null;
 }

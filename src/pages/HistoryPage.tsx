@@ -10,6 +10,8 @@ import SearchList from '../components/HistoryPage/SearchList';
 import CustomPhotoSet from '../components/HistoryPage/CustomPhotoSet';
 import LoadingIndicator from '../components/LoadingIndicator';
 
+import { Main } from '../styled-components/MainStyles';
+
 function HistoryPage() {
   const [cachedPhotos, setCachedPhotos] = useState<
     { key: string; photos: Photos[] }[]
@@ -47,7 +49,7 @@ function HistoryPage() {
   };
 
   return (
-    <main className='App'>
+    <Main>
       <h1>History Page</h1>
       {selectedPhoto && (
         <Modal photo={selectedPhoto} onClose={handleCloseModal} />
@@ -62,7 +64,7 @@ function HistoryPage() {
         />
         {loading && <LoadingIndicator />}
       </div>
-    </main>
+    </Main>
   );
 }
 

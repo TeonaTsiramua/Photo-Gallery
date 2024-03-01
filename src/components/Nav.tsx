@@ -1,17 +1,18 @@
 import { Link } from 'react-router-dom';
+import { NavLi, StyledNav, NavUl } from '../styled-components/HeaderStyles';
 
 function Nav() {
   return (
-    <nav>
-      <ul>
-        <li>
+    <StyledNav>
+      <NavUl>
+        <NavLi>
           <Link to='/'>Home</Link>
-        </li>
-        <li>
+        </NavLi>
+        <NavLi>
           <Link to='history'>History</Link>
-        </li>
-      </ul>
-    </nav>
+        </NavLi>
+      </NavUl>
+    </StyledNav>
   );
 }
 

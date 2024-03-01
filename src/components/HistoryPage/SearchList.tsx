@@ -1,4 +1,9 @@
 import { Photos } from '../../interface/interfaces';
+import {
+  Items,
+  ItemsLi,
+  ItemsUl,
+} from '../../styled-components/SearchedItmesStyles';
 
 function SearchList({
   cachedPhotos,
@@ -11,18 +16,17 @@ function SearchList({
   togglePhotos: (key: string) => void;
 }) {
   return (
-    <div className='searched-items'>
+    <Items>
       {cachedPhotos.map(({ key }) => (
-        <ul
+        <ItemsUl
           key={key}
-          className='search-list'
           onClick={() => togglePhotos(key)}
           style={{ cursor: 'pointer' }}
         >
-          <li>{key}</li>
-        </ul>
+          <ItemsLi>{key}</ItemsLi>
+        </ItemsUl>
       ))}
-    </div>
+    </Items>
   );
 }
 

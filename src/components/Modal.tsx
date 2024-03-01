@@ -1,6 +1,11 @@
-import { useEffect, useState } from 'react';
+import usePhotoStatistics from '../hooks/usePhotoStatistics';
 import { Photos } from '../interface/interfaces';
-import { fetchPhotoStatistics } from '../api/api';
+import {
+  Content,
+  ModalImg,
+  ModalSpan,
+  Overlay,
+} from '../styled-components/ModalStyles';
 
 export default function Modal({
   photo,
@@ -9,18 +14,7 @@ export default function Modal({
   photo: Photos | null;
   onClose: () => void;
 }) {
-  const [statistics, setStatistics] = useState<any | null>(null);
-
-  useEffect(() => {
-    const fetchStatistics = async () => {
-      if (photo) {
-        const stats = await fetchPhotoStatistics(photo.id);
-        setStatistics(stats);
-      }
-    };
-
-    fetchStatistics();
-  }, [photo]);
+  const statistics = usePhotoStatistics(photo?.id);
 
   if (!photo) return null;
 
@@ -31,17 +25,17 @@ export default function Modal({
   };
 
   return (
-    <div onClick={handleClickOutside} className='modal-overlay'>
-      <div className='modal-content'>
-        <span onClick={onClose}>✖</span>
-        <img className='modal-image' src={photo.urls.regular} alt='' />
+    <Overlay onClick={handleClickOutside}>
+      <Content>
+        <ModalSpan onClick={onClose}>✖</ModalSpan>
+        <ModalImg src={photo.urls.regular} alt='' />
 
         <div>
           <p>⬇️ Downloads: {statistics?.downloads?.total || ''}</p>
           <p>👁️ Views: {statistics?.views?.total || ''}</p>
           <p>❤️ Likes: {photo.likes || ''}</p>
         </div>
-      </div>
-    </div>
+      </Content>
+    </Overlay>
   );
 }

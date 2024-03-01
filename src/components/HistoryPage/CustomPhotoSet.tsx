@@ -16,7 +16,7 @@ function CustomPhotoSet({
   handlePhotoClick: (photo: Photos) => void;
 }) {
   return (
-    <div className='photo-set'>
+    <>
       {cachedPhotos.map(({ key, photos }, index) => (
         <PhotoSet
           key={`photoSet-${index}`}
@@ -27,7 +27,7 @@ function CustomPhotoSet({
           handlePhotoClick={handlePhotoClick}
         />
       ))}
-    </div>
+    </>
   );
 }
 

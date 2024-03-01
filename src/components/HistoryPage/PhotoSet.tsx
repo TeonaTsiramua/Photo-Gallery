@@ -1,4 +1,5 @@
 import { Photos } from '../../interface/interfaces';
+import { Image, Li, PhotoUl } from '../../styled-components/MainStyles';
 
 export default function PhotoSet({
   keyName,
@@ -14,24 +15,22 @@ export default function PhotoSet({
   handlePhotoClick: (photo: Photos) => void;
 }) {
   return (
-    <div className='x'>
-      <div>
-        {isSelected && (
-          <ul className='photos'>
-            {photos.map((photo: Photos) => (
-              <li key={photo.id}>
-                {photo.urls && photo.urls.small && (
-                  <img
-                    src={photo.urls.small}
-                    alt=''
-                    onClick={() => handlePhotoClick(photo)}
-                  />
-                )}
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-    </div>
+    <>
+      {isSelected && (
+        <PhotoUl>
+          {photos.map((photo: Photos) => (
+            <Li key={photo.id}>
+              {photo.urls && photo.urls.small && (
+                <Image
+                  src={photo.urls.small}
+                  alt={photo.alt_description || ''}
+                  onClick={() => handlePhotoClick(photo)}
+                />
+              )}
+            </Li>
+          ))}
+        </PhotoUl>
+      )}
+    </>
   );
 }

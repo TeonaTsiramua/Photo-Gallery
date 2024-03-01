@@ -1,4 +1,5 @@
 import { Photos } from '../../interface/interfaces';
+import { Image, Li, PhotoUl } from '../../styled-components/MainStyles';
 
 function PhotoList({
   photos,
@@ -8,17 +9,17 @@ function PhotoList({
   onPhotoClick: (photo: Photos) => void;
 }) {
   return (
-    <ul className='photos'>
+    <PhotoUl>
       {photos.map((photo, index) => (
-        <li key={photo.id + index}>
-          <img
+        <Li key={photo.id + index}>
+          <Image
             onClick={() => onPhotoClick(photo)}
             src={photo.urls.small}
-            alt=''
+            alt={photo.alt_description || ''}
           />
-        </li>
+        </Li>
       ))}
-    </ul>
+    </PhotoUl>
   );
 }
 
