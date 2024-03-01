@@ -1,4 +1,4 @@
-import { Photos } from '../interface/interfaces';
+import { Photos } from '../../interface/interfaces';
 
 export default function PhotoSet({
   keyName,

@@ -1,52 +1,28 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Photos } from '../interface/interfaces';
-import { fetchPopularPhotos, fetchSearchPhotos } from '../api/api';
+
 import Modal from '../components/Modal';
+import SearchInput from '../components/HomePage/SearchInput';
+import PhotoList from '../components/HomePage/PhotoList';
+import LoadingIndicator from '../components/LoadingIndicator';
+
+import useDataFetching from '../hooks/useDataFetching';
+import useScrollHandler from '../hooks/useScrollHandler';
 
 function HomePage() {
-  const [data, setData] = useState<Photos[]>([]);
   const [query, setQuery] = useState<string>('');
   const [selectedPhoto, setSelectedPhoto] = useState<Photos | null>(null);
   const [page, setPage] = useState<number>(1);
-  const [loading, setLoading] = useState<boolean>(false);
+  const { data, loading, clearData } = useDataFetching(query, page);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      let photos: Photos[] | null = null;
-      if (!query) {
-        photos = await fetchPopularPhotos(page);
-      } else {
-        photos = await fetchSearchPhotos(query, page);
-      }
-      if (photos) {
-        setData((prevData) => [...prevData, ...photos!]);
-      }
-      setLoading(false);
-    };
-
-    const debounceTimeout = setTimeout(fetchData, 700);
-    return () => clearTimeout(debounceTimeout);
-  }, [query, page]);
-
-  useEffect(() => {
-    function handleScroll() {
-      if (
-        window.innerHeight + document.documentElement.scrollTop >=
-        document.documentElement.offsetHeight - 100
-      ) {
-        setPage((prevPage) => prevPage + 1);
-      }
-    }
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  useScrollHandler(() => {
+    setPage((prevPage) => prevPage + 1);
+  });
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value);
     setPage(1);
-    setData([]);
+    clearData();
   };
 
   const handlePhotoClick = (photo: Photos) => {
@@ -60,27 +36,10 @@ function HomePage() {
   return (
     <main className='App'>
       <h1>Photos</h1>
-      <input
-        type='text'
-        value={query}
-        onChange={handleSearchChange}
-        placeholder='Search for photos...'
-      />
-
+      <SearchInput value={query} onChange={handleSearchChange} />
       <Modal photo={selectedPhoto} onClose={handleCloseModal} />
-
-      <ul className='photos'>
-        {data.map((photo: Photos, index) => (
-          <li key={photo.id + index}>
-            <img
-              onClick={() => handlePhotoClick(photo)}
-              src={photo.urls.small}
-              alt=''
-            />
-          </li>
-        ))}
-        {loading && <li>Loading...</li>}
-      </ul>
+      <PhotoList photos={data} onPhotoClick={handlePhotoClick} />
+      {loading && <LoadingIndicator />}
     </main>
   );
 }
