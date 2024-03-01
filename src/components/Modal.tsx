@@ -22,19 +22,9 @@ export default function Modal({
     fetchStatistics();
   }, [photo]);
 
-  // useEffect(() => {
-  //   // Disable scrolling on the body when the modal is open
-  //   document.body.style.overflow = 'hidden';
-  //   // Re-enable scrolling when the modal is closed
-  //   return () => {
-  //     document.body.style.overflow = 'scroll';
-  //   };
-  // }, []);
-
   if (!photo) return null;
 
   const handleClickOutside = (event: React.MouseEvent<HTMLDivElement>) => {
-    // Close modal if the backdrop is clicked
     if (event.target === event.currentTarget) {
       onClose();
     }

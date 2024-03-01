@@ -20,11 +20,13 @@ export default function PhotoSet({
           <ul className='photos'>
             {photos.map((photo: Photos) => (
               <li key={photo.id}>
-                <img
-                  src={photo.urls.small}
-                  alt=''
-                  onClick={() => handlePhotoClick(photo)}
-                />
+                {photo.urls && photo.urls.small && (
+                  <img
+                    src={photo.urls.small}
+                    alt=''
+                    onClick={() => handlePhotoClick(photo)}
+                  />
+                )}
               </li>
             ))}
           </ul>

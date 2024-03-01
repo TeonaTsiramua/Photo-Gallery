@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Photos } from '../interface/interfaces';
 import { fetchPopularPhotos, fetchSearchPhotos } from '../api/api';
 import Modal from '../components/Modal';
@@ -33,7 +33,7 @@ function HomePage() {
     function handleScroll() {
       if (
         window.innerHeight + document.documentElement.scrollTop >=
-        document.documentElement.offsetHeight - 100 // Adjusted threshold
+        document.documentElement.offsetHeight - 100
       ) {
         setPage((prevPage) => prevPage + 1);
       }
@@ -45,8 +45,8 @@ function HomePage() {
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value);
-    setPage(1); // Reset page when performing a new search
-    setData([]); // Reset data when performing a new search
+    setPage(1);
+    setData([]);
   };
 
   const handlePhotoClick = (photo: Photos) => {
@@ -70,8 +70,8 @@ function HomePage() {
       <Modal photo={selectedPhoto} onClose={handleCloseModal} />
 
       <ul className='photos'>
-        {data.map((photo: Photos) => (
-          <li key={photo.id}>
+        {data.map((photo: Photos, index) => (
+          <li key={photo.id + index}>
             <img
               onClick={() => handlePhotoClick(photo)}
               src={photo.urls.small}

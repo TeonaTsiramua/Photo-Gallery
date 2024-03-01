@@ -1,7 +1,8 @@
 import { createApi, OrderBy } from 'unsplash-js';
+import { ACCESS_KEY } from './config';
 
 const api = createApi({
-  accessKey: 'ey5cO1hMXJLrAjZhM4u5lNt9vxzHOXtUBJmB0avokV0',
+  accessKey: ACCESS_KEY,
 });
 
 export async function fetchPopularPhotos(page?: number) {
@@ -20,7 +21,7 @@ export async function fetchPopularPhotos(page?: number) {
 
 export async function fetchSearchPhotos(query: string, page?: number) {
   try {
-    const cacheKey = `${query}_page_${page}`; // Include page number in cache key
+    const cacheKey = `${query}_page_${page}`;
     const cachedPhotos = sessionStorage.getItem(cacheKey);
     if (cachedPhotos) {
       return JSON.parse(cachedPhotos);
@@ -31,10 +32,8 @@ export async function fetchSearchPhotos(query: string, page?: number) {
         page: page,
       });
       if (result.response) {
-        // Check if session storage limit is reached
-        const storageLimit = 10; // Adjust the limit as needed
+        const storageLimit = 40;
         if (sessionStorage.length >= storageLimit) {
-          // Find the oldest key based on timestamp
           let oldestTimestamp = Infinity;
           let oldestKey = null;
           for (let i = 0; i < sessionStorage.length; i++) {
@@ -47,13 +46,13 @@ export async function fetchSearchPhotos(query: string, page?: number) {
               }
             }
           }
-          // Remove the oldest key and its timestamp
+
           if (oldestKey) {
             sessionStorage.removeItem(oldestKey);
             sessionStorage.removeItem(`${oldestKey}_timestamp`);
           }
         }
-        // Push the new search result and its timestamp
+
         const currentTime = Date.now();
         sessionStorage.setItem(query, JSON.stringify(result.response.results));
         sessionStorage.setItem(`${query}_timestamp`, currentTime.toString());
