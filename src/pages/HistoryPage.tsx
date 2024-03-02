@@ -60,16 +60,14 @@ function HistoryPage() {
         <Modal photo={selectedPhoto} onClose={handleCloseModal} />
       )}
 
-      <div className='photo-set'>
-        <SearchList cachedPhotos={cachedPhotos} togglePhotos={togglePhotos} />
-        <CustomPhotoSet
-          cachedPhotos={cachedPhotos}
-          selectedKey={selectedKey}
-          handlePhotoClick={handlePhotoClick}
-          clicked={clicked}
-        />
-        {loading && <LoadingIndicator />}
-      </div>
+      <SearchList cachedPhotos={cachedPhotos} togglePhotos={togglePhotos} />
+      <CustomPhotoSet
+        cachedPhotos={cachedPhotos}
+        selectedKey={selectedKey}
+        handlePhotoClick={handlePhotoClick}
+        clicked={clicked}
+      />
+      {loading && <LoadingIndicator />}
     </Main>
   );
 }

@@ -20,6 +20,7 @@ export const Overlay = styled.div`
   justify-content: center;
   align-items: center;
   animation: ${fadeIn} 0.6s ease-in-out;
+  z-index: 2;
 `;
 
 export const Content = styled.div`

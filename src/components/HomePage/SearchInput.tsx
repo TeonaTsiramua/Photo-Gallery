@@ -1,9 +1,9 @@
 import {
   Input,
   InputContainer,
-  Logo,
+  // Logo,
 } from '../../styled-components/SearchInputStyles';
-import searchIcon from '../../assets/images/image_search.svg';
+// import searchIcon from '../../assets/images/image_search.svg';
 
 function SearchInput({
   value,
@@ -14,7 +14,7 @@ function SearchInput({
 }) {
   return (
     <InputContainer>
-      <Logo src={searchIcon} alt='Image search logo' />
+      {/* <Logo src={searchIcon} alt='Image search logo' /> */}
       <Input
         id='search'
         type='text'
