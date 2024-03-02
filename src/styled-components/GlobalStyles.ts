@@ -13,6 +13,10 @@ const GlobalStyles = createGlobalStyle`
     overflow: hidden;
   }
 
+  h1{
+    white-space: nowrap;
+  }
+
 `;
 
 export default GlobalStyles;

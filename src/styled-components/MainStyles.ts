@@ -69,6 +69,6 @@ export const Li = styled.li`
 
 export const NotFound = styled.p`
   position: fixed;
-  top: 30%;
+  top: 20rem;
   z-index: -1;
 `;

@@ -16,6 +16,9 @@ const ScrollUpButton = styled.button`
   cursor: pointer;
   transition: opacity 0.3s;
   z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &:hover {
     background-color: rgb(154, 208, 194);
