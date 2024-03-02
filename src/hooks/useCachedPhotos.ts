@@ -1,4 +1,3 @@
-// useCachedPhotos.ts
 import { useEffect } from 'react';
 import { Photos } from '../interface/interfaces';
 

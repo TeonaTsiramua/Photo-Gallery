@@ -1,4 +1,3 @@
-// useFetchMorePhotos.ts
 import { useEffect } from 'react';
 import { fetchSearchPhotos } from '../api/api';
 import { Photos } from '../interface/interfaces';

@@ -1,4 +1,3 @@
-// useScroll.ts
 import { useEffect } from 'react';
 
 interface Props {
