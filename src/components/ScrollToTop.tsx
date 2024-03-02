@@ -27,7 +27,6 @@ const ScrollToTop = () => {
 
   const toggleVisibility = () => {
     const scrollY = window.scrollY;
-    console.log('Scroll Position: ', scrollY);
     if (scrollY > 300) {
       setIsVisible(true);
     } else {
