@@ -4,27 +4,26 @@ import PhotoSet from './PhotoSet';
 function CustomPhotoSet({
   cachedPhotos,
   selectedKey,
-  togglePhotos,
   handlePhotoClick,
+  clicked,
 }: {
   cachedPhotos: {
     key: string;
     photos: Photos[];
   }[];
   selectedKey: string | null;
-  togglePhotos: (key: string) => void;
   handlePhotoClick: (photo: Photos) => void;
+  clicked: boolean;
 }) {
   return (
     <>
       {cachedPhotos.map(({ key, photos }, index) => (
         <PhotoSet
           key={`photoSet-${index}`}
-          keyName={key}
           photos={photos}
           isSelected={selectedKey === key}
-          togglePhotos={() => togglePhotos(key)}
           handlePhotoClick={handlePhotoClick}
+          clicked={clicked}
         />
       ))}
     </>

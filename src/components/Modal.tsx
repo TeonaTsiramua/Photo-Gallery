@@ -31,9 +31,15 @@ export default function Modal({
         <ModalImg src={photo.urls.regular} alt='' />
 
         <div>
-          <p>⬇️ Downloads: {statistics?.downloads?.total || ''}</p>
-          <p>👁️ Views: {statistics?.views?.total || ''}</p>
-          <p>❤️ Likes: {photo.likes || ''}</p>
+          <p>
+            ⬇️ <b>Downloads:</b> {statistics?.downloads?.total || ''}
+          </p>
+          <p>
+            👁️ <b>Views:</b> {statistics?.views?.total || ''}
+          </p>
+          <p>
+            ❤️ <b>Likes:</b> {photo.likes || ''}
+          </p>
         </div>
       </Content>
     </Overlay>

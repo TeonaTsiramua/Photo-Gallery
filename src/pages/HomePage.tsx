@@ -16,6 +16,7 @@ function HomePage() {
   const [selectedPhoto, setSelectedPhoto] = useState<Photos | null>(null);
   const [page, setPage] = useState<number>(1);
   const { data, loading, clearData } = useDataFetching(query, page);
+  const [clicked, setClicked] = useState(false);
 
   useScrollHandler(() => {
     setPage((prevPage) => prevPage + 1);
@@ -29,18 +30,26 @@ function HomePage() {
 
   const handlePhotoClick = (photo: Photos) => {
     setSelectedPhoto(photo);
+    setClicked(true);
+    document.body.classList.add('modal-open');
   };
 
   const handleCloseModal = () => {
     setSelectedPhoto(null);
+    setClicked(false);
+    document.body.classList.remove('modal-open');
   };
 
   return (
     <Main>
-      <h1>Photos</h1>
+      <h1>Photo Gallery</h1>
       <SearchInput value={query} onChange={handleSearchChange} />
       <Modal photo={selectedPhoto} onClose={handleCloseModal} />
-      <PhotoList photos={data} onPhotoClick={handlePhotoClick} />
+      <PhotoList
+        photos={data}
+        onPhotoClick={handlePhotoClick}
+        clicked={clicked}
+      />
       {loading && <LoadingIndicator />}
     </Main>
   );

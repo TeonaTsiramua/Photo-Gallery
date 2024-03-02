@@ -1,4 +1,5 @@
 import { Photos } from '../../interface/interfaces';
+import { NotFound } from '../../styled-components/MainStyles';
 import {
   Items,
   ItemsLi,
@@ -16,17 +17,23 @@ function SearchList({
   togglePhotos: (key: string) => void;
 }) {
   return (
-    <Items>
-      {cachedPhotos.map(({ key }) => (
-        <ItemsUl
-          key={key}
-          onClick={() => togglePhotos(key)}
-          style={{ cursor: 'pointer' }}
-        >
-          <ItemsLi>{key}</ItemsLi>
-        </ItemsUl>
-      ))}
-    </Items>
+    <>
+      {cachedPhotos.length > 0 ? (
+        <Items>
+          {cachedPhotos.map(({ key }) => (
+            <ItemsUl
+              key={key}
+              onClick={() => togglePhotos(key)}
+              style={{ cursor: 'pointer' }}
+            >
+              <ItemsLi>{key}</ItemsLi>
+            </ItemsUl>
+          ))}
+        </Items>
+      ) : (
+        <NotFound>No search history available</NotFound>
+      )}
+    </>
   );
 }
 

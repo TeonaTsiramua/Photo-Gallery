@@ -7,7 +7,10 @@ function useCachedPhotos(setCachedPhotos: Function) {
     const cachedData: { [key: string]: string } = { ...sessionStorage };
 
     const photosWithKeys = Object.entries(cachedData)
-      .filter(([key, value]) => !key.endsWith('_timestamp'))
+      .filter(
+        ([key, value]) =>
+          !key.endsWith('_timestamp') && JSON.parse(value).length > 0
+      )
       .map(([key, value]) => {
         try {
           const parsedValue = JSON.parse(value);

@@ -21,6 +21,7 @@ function HistoryPage() {
   const [loading, setLoading] = useState<boolean>(false);
   const [page, setPage] = useState<number>(2);
   const [shouldFetch, setShouldFetch] = useState<boolean>(false);
+  const [clicked, setClicked] = useState(false);
 
   useCachedPhotos(setCachedPhotos);
 
@@ -42,25 +43,30 @@ function HistoryPage() {
 
   const handlePhotoClick = (photo: Photos) => {
     setSelectedPhoto(photo);
+    setClicked(true);
+    document.body.classList.add('modal-open');
   };
 
   const handleCloseModal = () => {
     setSelectedPhoto(null);
+    setClicked(false);
+    document.body.classList.remove('modal-open');
   };
 
   return (
     <Main>
-      <h1>History Page</h1>
+      <h1>Search History</h1>
       {selectedPhoto && (
         <Modal photo={selectedPhoto} onClose={handleCloseModal} />
       )}
+
       <div className='photo-set'>
         <SearchList cachedPhotos={cachedPhotos} togglePhotos={togglePhotos} />
         <CustomPhotoSet
           cachedPhotos={cachedPhotos}
           selectedKey={selectedKey}
-          togglePhotos={togglePhotos}
           handlePhotoClick={handlePhotoClick}
+          clicked={clicked}
         />
         {loading && <LoadingIndicator />}
       </div>

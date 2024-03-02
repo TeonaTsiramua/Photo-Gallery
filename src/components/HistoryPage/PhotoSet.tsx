@@ -2,17 +2,15 @@ import { Photos } from '../../interface/interfaces';
 import { Image, Li, PhotoUl } from '../../styled-components/MainStyles';
 
 export default function PhotoSet({
-  keyName,
   photos,
   isSelected,
-  togglePhotos,
   handlePhotoClick,
+  clicked,
 }: {
-  keyName: string;
   photos: Photos[];
   isSelected: boolean;
-  togglePhotos: () => void;
   handlePhotoClick: (photo: Photos) => void;
+  clicked: boolean;
 }) {
   return (
     <>
@@ -25,6 +23,7 @@ export default function PhotoSet({
                   src={photo.urls.small}
                   alt={photo.alt_description || ''}
                   onClick={() => handlePhotoClick(photo)}
+                  className={clicked ? 'clicked' : ''}
                 />
               )}
             </Li>

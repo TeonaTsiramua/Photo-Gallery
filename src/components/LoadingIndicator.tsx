@@ -1,5 +1,7 @@
+import { Loader } from '../styled-components/Loader';
+
 function LoadingIndicator() {
-  return <li>Loading...</li>;
+  return <Loader></Loader>;
 }
 
 export default LoadingIndicator;
